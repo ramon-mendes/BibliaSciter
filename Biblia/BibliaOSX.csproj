@@ -72,6 +72,9 @@
     <Reference Include="SciterSharpOSX">
       <HintPath>..\packages\SciterSharpOSX.2.0.84\lib\xamarinmac20\SciterSharpOSX.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -95,6 +98,7 @@
     <None Include="Entitlements.plist" />
     <None Include="res\index.html" />
     <None Include="packages.BibliaOSX.config" />
+    <None Include="res\styles.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Src\App.cs" />

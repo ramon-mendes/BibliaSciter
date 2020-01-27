@@ -21,26 +21,14 @@ namespace Biblia
 			host.SetupPage("index.html");
 			wnd.Show();
 		}
-
-		// Things to do here:
-		// -override OnLoadData() to customize or track resource loading
-		// -override OnPostedNotification() to handle notifications generated with SciterHost.PostNotification()
 	}
 
 	class HostEvh : SciterEventHandler
 	{
-		// A dynamic script call handler. Any call in TIScript to function 'view.Host_HelloWorld()' with invoke this method
-		// (see: https://github.com/MISoftware/OmniCode-Snippets)
-
-		// Notice: the signature of the Host_HelloWorld() method bellow matches a pattern.
-		// Read more about it here: https://sciter.com/native-c-api-with-scitereventhandler-and-reflection/
-		public bool Host_HelloWorld(SciterElement el, SciterValue[] args, out SciterValue result)
+		public SciterValue Host_Data()
 		{
-			result = new SciterValue("Hello World! (from native side)");
-			return true;
+			return SciterValue.FromJSONString(File.ReadAllText("/Users/midiway/Documents/BibliaSciter/Biblia/nvi.json", Encoding.UTF8));
 		}
-
-		// (Hint: to overload C# methods of SciterEventHandler base class, type 'override', press space, and Visual Studio will suggest the methods you can override)
 	}
 
 	// This base class overrides OnLoadData and does the resource loading strategy

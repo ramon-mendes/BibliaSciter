@@ -2,12 +2,45 @@
 <html>
 <head>
 	<style>
+        @import url(styles.css);
 	</style>
 
-	<script type="text/tiscript">
-	</script>
+    <script type="text/tiscript">
+        var data;
+        if(Utils.InDBGView)
+            data = JSON.parse(Utils.readFileText("/Users/midiway/Documents/BibliaSciter/Biblia/nvi.json"));
+        else
+            data = view.Host_Data();
+
+        for(var (i, book) in data)
+        {
+            const el = <div>{book.name}</div>;
+            self#sidebar.append(el);
+        }
+
+        self#sidebar.on("click", "div", function() {
+            var book = data[this.index];
+            self#main.clear();
+
+            for(var (i, chapter) in book.chapters)
+            {
+                for(var (i, verse) in chapter)
+                {
+                    const el = <div>{verse}</div>;
+                    self#main.append(el);
+                }
+            }
+        });
+    </script>
 </head>
 
 <body>
+    <div #sidebar>
+
+    </div>
+
+    <main #main>
+
+    </main>
 </body>
 </html>

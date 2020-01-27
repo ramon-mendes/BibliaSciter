@@ -1,0 +1,11 @@
+body
+{
+    margin: 0;
+	flow: horizontal;
+}
+
+#sidebar
+{
+    size: 200px *;
+    border-right: solid 1px;
+}
