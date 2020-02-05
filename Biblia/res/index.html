@@ -8,7 +8,7 @@
     <script type="text/tiscript">
         var data;
         if(Utils.InDBGView)
-            data = JSON.parse(Utils.readFileText("/Users/midiway/Documents/BibliaSciter/Biblia/nvi.json"));
+            data = JSON.parse(Utils.readFileText(self.url("..") + "/nvi.json"));
         else
             data = view.Host_Data();
 
@@ -20,17 +20,24 @@
 
         self#sidebar.on("click", "div", function() {
             var book = data[this.index];
-            self#main.clear();
+            LoadBook(book);
+        });
+
+		function LoadBook(book) {
+			self#bookname.text = book.name;
+			self#verses.clear();
 
             for(var (i, chapter) in book.chapters)
             {
+				var el_paragraph = self#verses.$append(<div></div>);
                 for(var (i, verse) in chapter)
                 {
-                    const el = <div>{verse}</div>;
-                    self#main.append(el);
+                    const el = <span>{verse}</p>;
                 }
             }
-        });
+		}
+
+		LoadBook(data[0]);
     </script>
 </head>
 
@@ -40,7 +47,8 @@
     </div>
 
     <main #main>
-
+		<h1 #bookname />
+		<div #verses />
     </main>
 </body>
 </html>

@@ -2,10 +2,25 @@ body
 {
     margin: 0;
 	flow: horizontal;
+
+	font-family: 'Times New Roman';
 }
 
 #sidebar
 {
     size: 200px *;
     border-right: solid 1px;
+}
+
+#bookname
+{
+	text-align: center;
+	font-size: 36px;
+}
+
+#verses p
+{
+	margin: 10px 0;
+	text-indent: 20px;
+	font-size: 15px;
 }

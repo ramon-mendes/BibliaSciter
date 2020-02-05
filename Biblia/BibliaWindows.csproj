@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -63,8 +63,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SciterSharpWindows, Version=2.0.81.0, Culture=neutral, PublicKeyToken=917100d643775a9e, processorArchitecture=MSIL">
-      <HintPath>..\packages\SciterSharpWindows.2.0.81\lib\net45\SciterSharpWindows.dll</HintPath>
+    <Reference Include="SciterSharpWindows, Version=2.0.87.0, Culture=neutral, PublicKeyToken=917100d643775a9e, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciterSharpWindows.2.0.87\lib\net45\SciterSharpWindows.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -110,6 +110,7 @@
     <None Include="res\index.html" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="res\styles.css" />
     <Content Include="sciter.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
