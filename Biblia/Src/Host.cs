@@ -27,6 +27,7 @@ namespace Biblia
 	{
 		public SciterValue Host_Data()
 		{
+			return SciterValue.FromJSONString(File.ReadAllText(@"D:\ProjetosSciter\BibliaSciter\Biblia\nvi.json", Encoding.UTF8));
 			return SciterValue.FromJSONString(File.ReadAllText("/Users/midiway/Documents/BibliaSciter/Biblia/nvi.json", Encoding.UTF8));
 		}
 	}

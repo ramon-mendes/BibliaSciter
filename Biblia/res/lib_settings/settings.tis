@@ -1,0 +1,57 @@
+namespace Settings
+{
+	const cNAME = "biblia";
+	const cPATH = System.path(#USER_APPDATA) + "/settings-" + cNAME + ".json";
+	const cVERSION = 0x1;
+	var ns_data;
+	
+	function RestoreWork()// read settings
+	{
+		//if(View["settings-" + cNAME])
+		//	return false;
+
+		var stream = Stream.openFile(cPATH, "r");
+		
+		if(stream)
+		{
+			try
+			{
+				ns_data = parseData(stream);
+				//log("RestoreWork data");
+			} catch(e) {
+				//log("RestoreWork failed!");
+			}
+			stream.close();
+		} else {
+			//log("RestoreWork failed to open " + cPATH);
+		}
+		
+		View["settings-" + cNAME] = ns_data = ns_data || {};
+		return true;
+	}
+	
+	function StoreWork()
+	{
+		var stream = Stream.openFile(cPATH, "w+");
+		assert(stream);
+		
+		ns_data.version = cVERSION;
+		stream.printf("%V\n", ns_data);
+		stream.close();
+		
+		//log("StoreWork", cPATH);
+		//stdout.printf("%V\n", ns_data);
+	}
+}
+
+
+if(Settings.RestoreWork())
+{
+	if(!Settings.ns_data.loaded)
+	{
+		Settings.ns_data.ibook = 0;
+		Settings.ns_data.scroll_pos = 0;
+		Settings.ns_data.loaded = true;
+		Settings.StoreWork();
+	}
+}

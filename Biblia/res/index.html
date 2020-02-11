@@ -2,10 +2,13 @@
 <html>
 <head>
 	<style>
-        @import url(styles.css);
+		@import url(styles.css);
+
 	</style>
 
     <script type="text/tiscript">
+		include "lib_settings/settings.tis";
+
         var data;
         if(Utils.InDBGView)
             data = JSON.parse(Utils.readFileText(self.url("..") + "/nvi.json"));
@@ -14,36 +17,54 @@
 
         for(var (i, book) in data)
         {
-            const el = <div>{book.name}</div>;
-            self#sidebar.append(el);
+            self#books.options.$append(<option value="{i}">{book.name}</option>);
         }
 
-        self#sidebar.on("click", "div", function() {
-            var book = data[this.index];
-            LoadBook(book);
+        self#books.on("change", function() {
+			var ibook = this.$(:checked).index;
+            LoadBook(ibook);
         });
 
-		function LoadBook(book) {
+		function LoadBook(ibook) {
+            var book = data[ibook];
 			self#bookname.text = book.name;
 			self#verses.clear();
+			self#books.value = load_ibook;
 
-            for(var (i, chapter) in book.chapters)
+            for(var (ic, chapter) in book.chapters)
             {
-				var el_paragraph = self#verses.$append(<div></div>);
-                for(var (i, verse) in chapter)
+				var el_paragraph = self#verses.$append(<span .cname>{ic+1}</span>);
+                for(var (iv, verse) in chapter)
                 {
-                    const el = <span>{verse}</p>;
+					self#verses.$append(<p><sup>{iv+1}</sup> {verse}</p>);
                 }
             }
+
+			Settings.ns_data.ibook = ibook;
+			Settings.StoreWork();
 		}
 
-		LoadBook(data[0]);
+		self.on("scroll", function(evt) {
+			var evt_pos = evt.scrollPos;
+			self.timer(400, function() {
+				Settings.ns_data.scroll_pos = evt_pos;
+				Settings.StoreWork();
+			});
+		});
+
+		LoadBook(Settings.ns_data.ibook);
+		self.update();
+		self.post(function() {
+			self.scrollTo(0, Settings.ns_data.scroll_pos, false, true);
+			console.log(Settings.ns_data.scroll_pos);
+		});
     </script>
 </head>
 
 <body>
     <div #sidebar>
-
+		<select #books>
+		</select>
     </div>
 
     <main #main>
