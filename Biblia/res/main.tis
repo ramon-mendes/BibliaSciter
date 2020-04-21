@@ -21,6 +21,12 @@ self#chapters.on("click", "div", function() {
 	Bible.LoadChapter(ibook);
 });
 
+self#toggler.on("click", function() {
+	this.@.toggleClass("icon-angle-double-left");
+	this.@.toggleClass("icon-angle-double-right");
+	self#books.@.toggleClass("hide");
+});
+
 namespace Bible
 {
 	var cur_book;
@@ -32,6 +38,7 @@ namespace Bible
 		self#books.$$(div)[ibook].state.current = true;
 		self#bookname.text = cur_book.name;
 
+		self#chapters.$(section).clear();
 		for(var (ic, chapter) in cur_book.chapters)
 		{
 			self#chapters.$(section).$append(<div>{ic+1}</div>);
@@ -57,6 +64,8 @@ namespace Bible
 
 	function LoadChapter(ichapter)
 	{
+		log("LoadChapter " + ichapter);
+
 		var el_cname = self#verses.$$(.cname)[ichapter];
 		el_cname.scrollToView();
 

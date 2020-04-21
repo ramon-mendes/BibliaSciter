@@ -8,7 +8,7 @@ namespace Biblia
 		public Window()
 		{
 			var wnd = this;
-			wnd.CreateMainWindow(800, 600);
+			wnd.CreateMainWindow(1200, 800);
 			wnd.CenterTopLevelWindow();
 			wnd.Title = "Biblia";
 			#if WINDOWS

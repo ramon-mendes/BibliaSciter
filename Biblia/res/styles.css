@@ -1,9 +1,11 @@
 body
 {
-    margin: 0;
-	font-family: system;
-	flow: horizontal;
 	size: *;
+	flow: horizontal;
+	overflow: hidden;
+	margin: 0;
+
+	font-family: system;
 }
 
 @const BORDER_CLR: #bebebe;
@@ -14,9 +16,12 @@ body
 	size: *;
 	background: #f2f2f2;
 	border-right: solid 1px @BORDER_CLR;
+	overflow-y: scroll;
 }
-#books { width: 160px; overflow-y: scroll-indicator; }
-#chapters { width: 28px; }
+#books { width: 180px; }
+#books.hide { visibility: collapse; }
+
+#chapters { width: 48px; text-align: center; }
 #books div,
 #chapters div
 {
@@ -26,6 +31,7 @@ body
 	text-align: center;
 }
 #chapters #wrap { height: *; }
+#toggler { margin-bottom: 6px; cursor: pointer; }
 
 #books div { padding: 5px 0; font-size: 14px; text-align: left; padding-left: 10px; }
 
@@ -39,14 +45,14 @@ main
 {
 	size: *;
 	padding: 10px 20px;
-	overflow-x: scroll-indicator;
+	overflow-y: scroll;
 }
 
 #bookname
 {
 	font-size: 26px;
 }
-
+#verses { size: *; }
 #verses p
 {
 	margin: 10px 0;

@@ -1,6 +1,6 @@
 @font-face
 {
-	font-family: biblia-436834;
+	font-family: biblia-505351;
 	font-style: normal;
 	src: url(biblia.ttf);
 }
@@ -8,7 +8,7 @@
 i[class*=icon-]
 {
 	display: inline-block;
-	font-family: biblia-436834;
+	font-family: biblia-505351;
 	font-size: 1.20em;
 	font-style: normal;
 }
