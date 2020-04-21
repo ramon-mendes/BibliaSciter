@@ -1,0 +1,16 @@
+@font-face
+{
+	font-family: biblia-436834;
+	font-style: normal;
+	src: url(biblia.ttf);
+}
+
+i[class*=icon-]
+{
+	display: inline-block;
+	font-family: biblia-436834;
+	font-size: 1.20em;
+	font-style: normal;
+}
+i.icon-angle-double-left { content: '\f100'; }
+i.icon-angle-double-right { content: '\f101'; }

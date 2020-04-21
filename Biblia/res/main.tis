@@ -1,0 +1,66 @@
+include "lib_settings/settings.tis";
+
+var data;
+if(Utils.InDBGView)
+    data = JSON.parse(Utils.readFileText(self.url("..") + "/nvi.json"));
+else
+    data = view.Host_Data();
+
+for(var (i, book) in data)
+{
+    self#books.$append(<div>{book.name}</div>);
+}
+
+self#books.on("click", "div", function() {
+	var ibook = this.index;
+	Bible.LoadBook(ibook);
+});
+
+self#chapters.on("click", "div", function() {
+	var ibook = this.index;
+	Bible.LoadChapter(ibook);
+});
+
+namespace Bible
+{
+	var cur_book;
+
+	function LoadBook(ibook)
+	{
+		cur_book = data[ibook];
+
+		self#books.$$(div)[ibook].state.current = true;
+		self#bookname.text = cur_book.name;
+
+		for(var (ic, chapter) in cur_book.chapters)
+		{
+			self#chapters.$(section).$append(<div>{ic+1}</div>);
+		}
+
+		// load book verses
+		self#verses.clear();
+
+		for(var (ic, chapter) in cur_book.chapters)
+		{
+			var el_paragraph = self#verses.$append(<span .cname>{ic+1}</span>);
+			for(var (iv, verse) in chapter)
+			{
+				self#verses.$append(<p><sup>{iv+1}</sup> {verse}</p>);
+			}
+		}
+
+		LoadChapter(0);
+
+		Settings.ns_data.ibook = ibook;
+		Settings.StoreWork();
+	}
+
+	function LoadChapter(ichapter)
+	{
+		var el_cname = self#verses.$$(.cname)[ichapter];
+		el_cname.scrollToView();
+
+		Settings.ns_data.ichapter = ichapter;
+		Settings.StoreWork();
+	}
+}

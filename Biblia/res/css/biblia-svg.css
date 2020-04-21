@@ -1,0 +1,13 @@
+icon
+{
+	display: block;
+	size: *;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	transform: scale(1, -1);
+	fill: black;
+	stroke: none;
+}
+icon.icon-angle-double-left { background-image: url(path:M350 82q0-7-6-13l-28-28q-5-5-12-5t-13 5l-260 261q-6 5-6 12t6 13l260 260q5 6 13 6t12-6l28-28q6-5 6-13t-6-12l-219-220 219-219q6-6 6-13z m214 0q0-7-5-13l-28-28q-6-5-13-5t-13 5l-260 261q-6 5-6 12t6 13l260 260q6 6 13 6t13-6l28-28q5-5 5-13t-5-12l-220-220 220-219q5-6 5-13z); }
+icon.icon-angle-double-right { background-image: url(path:M332 314q0-7-5-12l-261-261q-5-5-12-5t-13 5l-28 28q-6 6-6 13t6 13l219 219-219 220q-6 5-6 12t6 13l28 28q5 6 13 6t12-6l261-260q5-5 5-13z m214 0q0-7-5-12l-260-261q-6-5-13-5t-13 5l-28 28q-5 6-5 13t5 13l219 219-219 220q-5 5-5 12t5 13l28 28q6 6 13 6t13-6l260-260q5-5 5-13z); }

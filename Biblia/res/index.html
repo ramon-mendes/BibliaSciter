@@ -3,73 +3,26 @@
 <head>
 	<style>
 		@import url(styles.css);
-
+		@import url(css/biblia-font.css);
 	</style>
 
     <script type="text/tiscript">
-		include "lib_settings/settings.tis";
-
-        var data;
-        if(Utils.InDBGView)
-            data = JSON.parse(Utils.readFileText(self.url("..") + "/nvi.json"));
-        else
-            data = view.Host_Data();
-
-        for(var (i, book) in data)
-        {
-            self#books.options.$append(<option value="{i}">{book.name}</option>);
-        }
-
-        self#books.on("change", function() {
-			var ibook = this.$(:checked).index;
-            LoadBook(ibook);
-        });
-
-		function LoadBook(ibook) {
-            var book = data[ibook];
-			self#bookname.text = book.name;
-			self#verses.clear();
-			self#books.value = load_ibook;
-
-            for(var (ic, chapter) in book.chapters)
-            {
-				var el_paragraph = self#verses.$append(<span .cname>{ic+1}</span>);
-                for(var (iv, verse) in chapter)
-                {
-					self#verses.$append(<p><sup>{iv+1}</sup> {verse}</p>);
-                }
-            }
-
-			Settings.ns_data.ibook = ibook;
-			Settings.StoreWork();
-		}
-
-		self.on("scroll", function(evt) {
-			var evt_pos = evt.scrollPos;
-			self.timer(400, function() {
-				Settings.ns_data.scroll_pos = evt_pos;
-				Settings.StoreWork();
-			});
-		});
-
-		LoadBook(Settings.ns_data.ibook);
-		self.update();
-		self.post(function() {
-			self.scrollTo(0, Settings.ns_data.scroll_pos, false, true);
-			console.log(Settings.ns_data.scroll_pos);
-		});
+		include "main.tis";
     </script>
 </head>
 
 <body>
-    <div #sidebar>
-		<select #books>
-		</select>
-    </div>
+	<div #books>
+	</div>
 
-    <main #main>
+	<div #chapters>
+		<section #wrap></section>
+		<i .icon-angle-double-left />
+	</div>
+
+	<main #main>
 		<h1 #bookname />
 		<div #verses />
-    </main>
+	</main>
 </body>
 </html>

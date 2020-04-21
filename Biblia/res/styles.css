@@ -1,24 +1,50 @@
 body
 {
     margin: 0;
-	font-family: 'Times New Roman';
+	font-family: system;
+	flow: horizontal;
+	size: *;
 }
 
-#sidebar
+@const BORDER_CLR: #bebebe;
+@const BG_HOVER: #bebebe;
+
+#books, #chapters
 {
-	padding: 10px *;
+	size: *;
 	background: #f2f2f2;
+	border-right: solid 1px @BORDER_CLR;
 }
+#books { width: 160px; overflow-y: scroll-indicator; }
+#chapters { width: 28px; }
+#books div,
+#chapters div
+{
+	padding: 4px 0;
+	cursor: pointer;
+	border-bottom: solid 1px @BORDER_CLR;
+	text-align: center;
+}
+#chapters #wrap { height: *; }
+
+#books div { padding: 5px 0; font-size: 14px; text-align: left; padding-left: 10px; }
+
+#books div:hover,
+#chapters div:hover,
+#books div:current,
+#chapters div:current
+{ background: #e4e4e4; }
 
 main
 {
+	size: *;
 	padding: 10px 20px;
+	overflow-x: scroll-indicator;
 }
 
 #bookname
 {
-	text-align: center;
-	font-size: 36px;
+	font-size: 26px;
 }
 
 #verses p
